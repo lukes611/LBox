@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="IndexApp" ng-controller="IndexAppController">
+    <head>
+        <script src="js/angular.js"></script>
+        <script src="js/LLocal.js"></script>
+        <script src="js/index.js"></script>
+        <link type="text/css" rel="stylesheet" href="css/index.css">
+    </head>
+    <body>
+        box
+        
+        <!--//functions-->
+        <div>
+            {{currentDirectory}}
+        </div>
+        <!--//view -->
+        <div id="View">
+            <div ng-repeat="file in currentFiles">
+                {{file}}:file
+            </div>
+        </div>
+    </body>
+</html>
