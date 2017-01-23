@@ -12,11 +12,15 @@
         <!--//functions-->
         <div>
             {{currentDirectory}}
+            <button ng-click="goUp()">up</button>
         </div>
         <!--//view -->
         <div id="View">
-            <div ng-repeat="file in currentFiles">
-                {{file}}:file
+            <div ng-show="file.name[0] != '.'" class="fileIconOuter" ng-repeat="file in currentFiles" ng-click="clickFile(file)">
+                <img class="fileIconIcon" ng-src="{{'/img/' + (file.isDirectory ? 'directoryIcon.jpg' : 'fileIcon.png')}}">
+                <div class="fileIconName">
+                    {{file.name}}
+                </div>
             </div>
         </div>
     </body>

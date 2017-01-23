@@ -4,3 +4,25 @@
     width : 90%;
     margin-left:5%;
 }
+
+/*
+    file viewer
+*/
+.fileIconOuter{
+    width : 15%;
+    height : 15%;
+    margin : 1%;
+    float : left;
+    cursor : pointer;
+}
+
+.fileIconIcon{
+    width : 50%;
+    height : auto;
+    margin-left : 25%;
+}
+
+.fileIconName{
+    text-align:center;
+    width : 100%;
+}
