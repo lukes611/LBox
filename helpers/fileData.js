@@ -33,7 +33,9 @@ exports.getFiles = function(dir, callback, callbackError){
                     name : item,
                     size : stats.size,
                     isDirectory : stats.isDirectory(),
-                    link : stats.isDirectory() ? '#' : '/downloadFile?' + querystring.stringify({filePath : dir + '/' + item})
+                    link : stats.isDirectory() ? '#' : '/downloadFile?' + querystring.stringify({filePath : dir + '/' + item}),
+                    path : dir + '/' + item
+                    
                 });
                 addStats();
             }); 

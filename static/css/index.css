@@ -53,8 +53,8 @@ body{
 #NotesContainer{
     width : 400px;
     height : 400px;
-    background-color : chartreuse;
     position : fixed;
+    background-color : white;
     top : 0px;
     right : 0px;
 }
@@ -63,6 +63,11 @@ body{
     position : fixed;
     top : 0;
     right : 0;
+    width : 30px;
+    height : 30px;
+}
+
+#NotesToggleImg{
     width : 30px;
     height : 30px;
 }

@@ -3,6 +3,7 @@
     <head>
         <script src="js/angular.js"></script>
         <script src="js/LLocal.js"></script>
+        <script src="js/BackgroundTab.js"></script>
         <script src="js/index.js"></script>
         <link type="text/css" rel="stylesheet" href="css/index.css">
     </head>
@@ -13,24 +14,29 @@
                 <img id="upDirectoryArrow" ng-click="goUp()" src="/img/upArrow.jpg">
                 <input id="AddressBar" ng-value="currentDirectory"  type="text">
                 <div id="FSToolBoxDiv">
-                    <img class="toolIcons" src="/img/trashIcon.png">
-                    <img class="toolIcons" src="/img/downloadIcon.png">
+                    <img class="toolIcons" ng-show="selectedList.length > 0" src="/img/trashIcon.png">
+                    <img class="toolIcons" ng-show="selectedList.length > 0" ng-click="downloadFiles()" src="/img/downloadIcon.png">
+                    <span>No. selected files: {{selectedList.length}}</span>
                 </div>
             </div>
             <!--//view -->
             <div id="View">
-                <div ng-show="file.name[0] != '.'" class="fileIconOuter" ng-repeat="file in currentFiles" ng-dblclick="clickFile(file)">
+                <div ng-show="file.name[0] != '.'" class="fileIconOuter" ng-repeat="file in currentFiles" ng-dblclick="clickFile(file)" ng-click="selectFile(file)">
                     <img class="fileIconIcon" ng-src="{{'/img/' + (file.isDirectory ? 'directoryIcon.png' : 'fileIcon.png')}}">
-                    <div class="fileIconName">
+                    <div class="fileIconName" ng-style="{color: isSelected(file)?'red':'black'}">
                         {{file.name}}
                     </div>
                 </div>
+                
             </div>
+            
         </div>
-        <div id="NotesContainer">
+        <div ng-show="displayNotes" id="NotesContainer">
             Notes
         </div>
         
-        <div id="NotesToggle">Notes <img src="/img/squaresIcon.png"></div>
+        
+        
+        <div id="NotesToggle" ng-click="displayNotes = !displayNotes"><img id="NotesToggleImg" src="/img/squareIcon.png"></div>
     </body>
 </html>

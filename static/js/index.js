@@ -1,15 +1,18 @@
 
 
-var IndexApp = angular.module('IndexApp', ['LLocal']);
+var IndexApp = angular.module('IndexApp', ['LLocal', 'BackgroundTab']);
 
 IndexApp.controller('IndexAppController', 
     ['$scope',
      '$http',
      'LLocal',
      '$window',
-     function($scope, $http, LLocal, $window){
+     'BackgroundTab',
+     function($scope, $http, LLocal, $window, BGTab){
          
-         LLocal.clear('currentDirectory');
+         //LLocal.clear('currentDirectory');
+         $scope.displayNotes = false;
+         $scope.selectedList = [];
          
          $scope.listFiles = function(dir){
              $http.get('/fileList', {params: {dir : dir}}).then(function(response){
@@ -40,25 +43,52 @@ IndexApp.controller('IndexAppController',
          $scope.loadCurrentDirectory();
          
          $scope.clickFile = function(file){
-             console.log('clicked: ', file);
              if(file.isDirectory){
                  setCurrentDirectory($scope.currentDirectory + '/' + file.name);
              }else{
-                 window.location.href = file.link;
-                /*$http.post('/downloadFile', {filePath : $scope.currentDirectory + '/' + file.name}).then(function(response){
-                    //location.href = response.data;
-                    //console.log('downloaded', response.data);
-                    var content = response.data;
-                    var blob = new Blob([ content ], { type : 'binary' });
-                    window.location.assign((window.URL || window.webkitURL).createObjectURL( blob ));
-                });*/
+                 //window.location.href = file.link;
+                 window.open(file.link);
              }
+             $scope.unselect(file);
+         };
+         
+         $scope.selectFile = function(file){
+             if(!$scope.isSelected(file))$scope.selectedList.push(file);
+             else $scope.unselect(file);
+             
+             console.log($scope.selectedList)
+         };
+         
+         $scope.isSelected = function(file){
+             for(var i = 0; i < $scope.selectedList.length; i++)
+                 if($scope.selectedList[i].path == file.path) return true;
+             return false;
+         };
+         
+         $scope.unselect = function(file){
+             var newList = [];
+             for(var i = 0; i < $scope.selectedList.length; i++)
+                 if($scope.selectedList[i].path != file.path)
+                     newList.push($scope.selectedList[i]);
+             $scope.selectedList = newList;
          };
          
          $scope.goUp = function(){
              var _ = $scope.currentDirectory.split('/');
              _ = _.slice(0,-1).join('/');
              setCurrentDirectory(_);
+         };
+         
+         $scope.downloadFiles = function(){
+             var i = 0;
+             function action(){
+                if(i >= $scope.selectedList.length) return;
+                 window.open($scope.selectedList[i].link, '_blank', 'toolbar=0,location=0,menubar=0');
+                 i++;
+                 setTimeout(action, 500);
+             }
+             action();
+             
          };
      }
     ]
