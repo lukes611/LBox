@@ -9,35 +9,34 @@ body{
     font-family : Messy;
 }
 
-#TopContainer{
-    width : 1200px;
-    height : 500px;
-    margin-left : auto;
-    margin-right : auto;
-}
 
 #FileSystemContainer{
-    width : 800px;
-    height : 100%;
-    float : left;
+    width : 100vw;
+    height : 100vh;
 }
 
 #FSTools{
-    width : 100%;
-    height : 10%;
+    width : 100vw;
+    height : 60px;
+    border-bottom : 1px solid black;
 }
 
 #AddressBar{
     width : 96%;
     float : left;
     font-family : Messy;
+    height : 18px;
+    padding:0;
+    margin:0;
 }
 
 #upDirectoryArrow{
-    width : 3%;
-    height : auto;
+    width : 20px;
+    height : 20px;
     float : left;
     cursor : pointer;
+    border-top:1px solid grey;
+    border-bottom:1px solid grey;
 }
 
 #FSToolBoxDiv{
@@ -46,7 +45,9 @@ body{
 }
 
 .toolIcons{
-    width : 25px;
+    width : 39px;
+    float : left;
+    margin-right : 2px;
 }
 
 #NotesContainer{
