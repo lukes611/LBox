@@ -52,9 +52,19 @@ body{
 
 #NotesContainer{
     width : 400px;
-    height : 100%;
-    float : left;
+    height : 400px;
     background-color : chartreuse;
+    position : fixed;
+    top : 0px;
+    right : 0px;
+}
+
+#NotesToggle{
+    position : fixed;
+    top : 0;
+    right : 0;
+    width : 30px;
+    height : 30px;
 }
 
 #View{
