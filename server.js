@@ -18,6 +18,10 @@ app.get('/getCurrentDirectory', function(req, res){
 });
 
 
+app.get('/isSafe', function(req, res){
+    var file = fileData.pathIsSafe(folder, req.query.dir);
+    res.json({isSafe : !file.error});
+});
 
 app.get('/fileList', function(req, res){
     

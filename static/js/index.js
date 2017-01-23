@@ -6,7 +6,8 @@ IndexApp.controller('IndexAppController',
     ['$scope',
      '$http',
      'LLocal',
-     function($scope, $http, LLocal){
+     '$window',
+     function($scope, $http, LLocal, $window){
          
          LLocal.clear('currentDirectory');
          
@@ -17,9 +18,16 @@ IndexApp.controller('IndexAppController',
          };
          
          function setCurrentDirectory(newDirectory){
-             $scope.currentDirectory = newDirectory;
-             LLocal.set('currentDirectory', newDirectory);
-             $scope.listFiles($scope.currentDirectory);  
+             $http.get('/isSafe', {params : {dir:newDirectory}}).then(function(response){
+                 if(response.data.isSafe){
+                    $scope.currentDirectory = newDirectory;
+                    LLocal.set('currentDirectory', newDirectory);
+                    $scope.listFiles($scope.currentDirectory);          
+                 }else{
+                     $window.alert('warning: access denied');
+                 }
+             });
+             
          };
          
          $scope.loadCurrentDirectory = function(){
@@ -49,7 +57,6 @@ IndexApp.controller('IndexAppController',
          
          $scope.goUp = function(){
              var _ = $scope.currentDirectory.split('/');
-             console.log(_, _.slice(0,-1));
              _ = _.slice(0,-1).join('/');
              setCurrentDirectory(_);
          };
