@@ -6,25 +6,32 @@
         <script src="js/BackgroundTab.js"></script>
         <script src="js/index.js"></script>
         <link type="text/css" rel="stylesheet" href="css/index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <!--//functions-->
-        <div id="FileSystemContainer">
-            <div id="FSTools">
-                <img id="upDirectoryArrow" ng-click="goUp()" src="/img/upArrow.jpg">
+        
+        <div id="TopDiv">
+            <div id="TopS1">
+                <img ng-click="goUp()" id="BackArrow" src="/img/upArrow.jpg">
                 <input id="AddressBar" ng-value="currentDirectory"  type="text">
-                <div id="FSToolBoxDiv">
-                    <img class="toolIcons" ng-show="selectedList.length > 0" src="/img/trashIcon.png">
-                    <img class="toolIcons" ng-show="selectedList.length > 0" ng-click="downloadFiles()" src="/img/downloadIcon.png">
-                    <span>No. selected files: {{selectedList.length}}</span>
-                </div>
+                <img id="NotesToggleImg" ng-click="displayNotes = !displayNotes" src="/img/squareIcon.png">
             </div>
-            <!--//view -->
+            <div id="OtherTools">
+                <div class="TopMessages">sf: {{selectedList.length}}</div>
+                <img class="TopIcons" ng-show="selectedList.length > 0" src="/img/trashIcon.png">
+                <img class="TopIcons" ng-show="selectedList.length > 0" ng-click="downloadFiles()" src="/img/downloadIcon.png">
+                
+            </div>
+        </div>
+        
+        <!--//functions -->
+        <div id="FileSystemContainer">
+            <!--//view  -->
             <div id="View">
-                <div ng-show="file.name[0] != '.'" class="fileIconOuter" ng-repeat="file in currentFiles" ng-dblclick="clickFile(file)" ng-click="selectFile(file)">
-                    <img class="fileIconIcon" ng-src="{{'/img/' + (file.isDirectory ? 'directoryIcon.png' : 'fileIcon.png')}}">
+                <div ng-show="file.name[0] != '.'" class="fileIconOuter" ng-repeat="file in currentFiles">
+                    <img class="fileIconIcon" ng-click="clickFile(file)" ng-src="{{'/img/' + (file.isDirectory ? 'directoryIcon.png' : 'fileIcon.png')}}">
                     <div class="fileIconName" ng-style="{color: isSelected(file)?'red':'black'}">
-                        {{file.name}}
+                        {{file.name}} <div ng-click="selectFile(file)" ng-class="'selectionIcon'" ng-style="{'background-color':isSelected(file)?'black':'none'}"></div>
                     </div>
                 </div>
                 
@@ -37,6 +44,6 @@
         
         
         
-        <div id="NotesToggle" ng-click="displayNotes = !displayNotes"><img id="NotesToggleImg" src="/img/squareIcon.png"></div>
+        
     </body>
 </html>

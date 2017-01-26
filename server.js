@@ -42,17 +42,6 @@ app.get('/fileList', function(req, res){
 
 app.get('/downloadFile', function(req, res){
     res.sendFile(req.query.filePath);
-    /*var file = req.body.filePath;
-
-    var filename = file;
-    var mimetype = mime.lookup(file);
-
-    res.setHeader('Content-disposition', 'attachment; filename=' + filename);
-    res.setHeader('Content-type', mimetype);
-
-    var filestream = fs.createReadStream(file);
-    filestream.pipe(res);*/
-    
 });
 
 
