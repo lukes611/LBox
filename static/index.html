@@ -30,7 +30,7 @@
             <div ng-show="file.name[0] != '.'" ng-class="'fileIconOuter'" ng-style="{border:isSelected(file)?'1px solid blue':'1px solid white'}" ng-repeat="file in currentFiles">
                 <img class="fileIconIcon" ng-click="clickFile(file)" ng-src="{{'/img/' + (file.isDirectory ? 'directoryIcon.png' : 'fileIcon.png')}}">
                 <div class="fileIconName">
-                    {{file.name}} 
+                    {{filterFileName(file)}} 
                 </div>
                 <div ng-click="selectFile(file)" ng-class="'selectionIcon'" ng-style="{'background-color':isSelected(file)?'black':'none'}"></div>
             </div>

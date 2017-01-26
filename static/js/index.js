@@ -90,6 +90,18 @@ IndexApp.controller('IndexAppController',
              action();
              
          };
+         
+         $scope.filterFileName = function(file){
+             //max should be 24
+             if(file.name.length > 15){
+                 if(file.isDirectory){
+                     return file.name.substr(0,12) + '...';
+                 }else{
+                     return file.name.substr(0,9) + '...' + file.name.substr(file.name.length-3);
+                 }
+             }
+             return file.name;
+         };
      }
     ]
 );
