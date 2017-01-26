@@ -15,6 +15,9 @@ The top section: contains tools and stuff
 #TopDiv{
     background-color : #eeeeee;
     width : 100%;
+    position : fixed;
+    top : 0;
+    left : 0;
 }
 
 #TopS1{
@@ -128,7 +131,9 @@ end top section
 #FileSystemContainer{
     width : 100%;
     display : inline-block;
+    margin-top : 60px;
 }
+
 
 .selectionIcon{
     border : 1px solid black;
@@ -137,11 +142,26 @@ end top section
     
 }
 
+.moreSelectedStyle{
+    border : 1px solid blue;
+}
+
 .fileIconOuter{
     width : 100px;
     height : 110px;
     margin : 10px;
     float : left;
+    border : 1px solid white;
+}
+
+
+@media screen and (max-width: 600px) {
+    #FileSystemContainer{ margin-top : 90px;}
+    .fileIconOuter{
+        width : 100px;
+        height : 110px;
+        margin : 5px;
+    }
 }
 
 .fileIconIcon{
