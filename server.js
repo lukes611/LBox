@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 var port = 8142;
-var folder = __dirname;
+var folder = __dirname.split('/').slice(0,-1).join('/');
 
 if(process.argv.length > 2){
     folder = process.argv[2];
