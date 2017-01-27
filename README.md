@@ -4,15 +4,20 @@ A Cloud File System (with other applications)
 
 view files recursively:
 functions:
-    sort
-    view-hidden-files
     search
-    filter
     un-select *
     select * on page
     download
     select
     delete
+    4.create folder
+    5.create file
+    
+6. open/edit:
+    highlighting
+    save
+    exit
+    
 notes
 
 

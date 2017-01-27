@@ -42,3 +42,11 @@ exports.getFiles = function(dir, callback, callbackError){
         })();
     });
 };
+
+exports.getSafeName = function(input){
+    var output = '';
+    for(var i = 0; i < input.length; i++){
+        if('abcdefghijklmnopqrstuvwxyz1234567890. '.indexOf(input[i].toLowerCase()) != -1) output += input[i];
+    }
+    return output;
+};

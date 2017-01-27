@@ -18,8 +18,12 @@
             </div>
             <div id="OtherTools">
                 <div class="TopMessages">sf: {{selectedList.length}}</div>
+                <img class="TopIcons" ng-click="showHiddenFiles=!showHiddenFiles" src="/img/hiddenIcon.png" ng-style="{border:showHiddenFiles?'1px solid blue':'1px solid black'}">
+                <img class="TopIcons" ng-click="createNewFile(true)" src="/img/directoryIcon.png">
+                <img class="TopIcons" ng-click="createNewFile(false)" src="/img/fileIcon.png">
                 <img class="TopIcons" ng-show="selectedList.length > 0" src="/img/trashIcon.png">
                 <img class="TopIcons" ng-show="selectedList.length > 0" ng-click="downloadFiles()" src="/img/downloadIcon.png">
+                
                 
             </div>
         </div>
@@ -27,7 +31,7 @@
         <!--//functions -->
         <div id="FileSystemContainer">
             <!--//each file  -->
-            <div ng-show="file.name[0] != '.'" ng-class="'fileIconOuter'" ng-style="{border:isSelected(file)?'1px solid blue':'1px solid white'}" ng-repeat="file in currentFiles">
+            <div ng-show="file.name[0] != '.' || showHiddenFiles" ng-class="'fileIconOuter'" ng-style="{border:isSelected(file)?'1px solid blue':'1px solid white'}" ng-repeat="file in getFilesForDisplay()">
                 <img class="fileIconIcon" ng-click="clickFile(file)" ng-src="{{'/img/' + (file.isDirectory ? 'directoryIcon.png' : 'fileIcon.png')}}">
                 <div class="fileIconName">
                     {{filterFileName(file)}} 

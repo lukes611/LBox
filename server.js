@@ -44,6 +44,31 @@ app.get('/downloadFile', function(req, res){
     res.sendFile(req.query.filePath);
 });
 
+app.get('/createFile', function(req, res){
+    console.log('going to create');
+    var name = fileData.getSafeName(req.query.name);
+    var isDir = req.query.isDir;
+    var dir = req.query.dir;
+    
+    var _ = fileData.pathIsSafe(folder, dir);
+    if(_.error || name.length <= 0){
+        res.json({error:true});
+        return;
+    }
+    
+    fileData.getFiles(dir, function(files){
+        var exists = files.filter(f => f.name.toLowerCase() == name.toLowerCase()).length > 0;
+        if(!exists){
+            
+            res.json({error:false, other : [name,isDir,dir]});    
+        }else res.json({error:true});
+    }, function(){
+        res.json({error:true});
+    });
+    
+    
+});
+
 
 app.use(express.static('static'));
 
