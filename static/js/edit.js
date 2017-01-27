@@ -22,7 +22,7 @@ function($scope, $http, $window, LLocal){
             if(!response.data.error)$scope.prevContent = $scope.content;
             else $window.alert('an error occurred whilst saving');
             
-            console.log(response.data);
+            //console.log(response.data);
         });
     };
     

@@ -11,7 +11,13 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 var port = 8142;
-var folder = '/home/luke';
+var folder = __dirname;
+
+if(process.argv.length > 2){
+    folder = process.argv[2];
+}
+
+console.log('access to ', folder);
 
 app.get('/getCurrentDirectory', function(req, res){
     res.json({response : folder, error : false});
@@ -41,7 +47,8 @@ app.get('/fileList', function(req, res){
 });
 
 app.get('/downloadFile', function(req, res){
-    res.sendFile(req.query.filePath);
+    var file = req.query.filePath;
+    res.sendFile(file, {dotfiles:'allow'});
 });
 
 app.post('/saveFile', function(req, res){

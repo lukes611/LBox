@@ -30,6 +30,8 @@ IndexApp.controller('IndexAppController',
                     $scope.listFiles($scope.currentDirectory);          
                  }else{
                      $window.alert('warning: access denied');
+                     LLocal.clear('currentDirectory');
+                     $scope.loadCurrentDirectory();
                  }
              });
              
