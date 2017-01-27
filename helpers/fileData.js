@@ -16,14 +16,14 @@ exports.getFiles = function(dir, callback, callbackError){
             callbackError();
             return;
         }
-        fs.stat(dir + '/' + files[0], function(err, stats){
+        /*fs.stat(dir + '/' + files[0], function(err, stats){
             console.log(stats, err);
-        });
+        });*/
         
         var returnArray = [];
         (function addStats(){
             if(files.length == 0){
-                console.log(returnArray.length);
+                //console.log(returnArray.length);
                 callback(returnArray);
                 return;
             }

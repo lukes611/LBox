@@ -23,7 +23,7 @@
                 <img class="TopIcons" ng-click="createNewFile(false)" src="/img/fileIcon.png">
                 <img class="TopIcons" ng-show="selectedList.length > 0" src="/img/trashIcon.png">
                 <img class="TopIcons" ng-show="selectedList.length > 0" ng-click="downloadFiles()" src="/img/downloadIcon.png">
-                
+                <img class="TopIcons" ng-show="canEdit()" ng-click="editSelected()" src="/img/editIcon.png">
                 
             </div>
         </div>

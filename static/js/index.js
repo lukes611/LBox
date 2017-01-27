@@ -140,7 +140,25 @@ IndexApp.controller('IndexAppController',
                  
              $http.get('/createFile', {params : {isDir:isDir, name : name, dir : $scope.currentDirectory}}).then(function(response){
                  console.log(response.data);
+                 $scope.listFiles($scope.currentDirectory);
              });
+         };
+         
+         $scope.canEdit = function(){
+             if($scope.selectedList.length != 1) return false;
+             if($scope.selectedList[0].isDirectory) return false;
+             return true;
+         };
+         
+         $scope.editSelected = function(){
+             var fail = function(){};
+             if($scope.selectedList.length != 1) return fail();
+             if($scope.selectedList[0].isDirectory) return fail();
+             
+             var file = $scope.selectedList[0];
+             LLocal.set('toEdit', file);
+             $window.location.href = '/html/edit.html';
+             
          };
          
      }

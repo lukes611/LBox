@@ -10,8 +10,6 @@ functions:
     download
     select
     delete
-    4.create folder
-    5.create file
     
 6. open/edit:
     highlighting

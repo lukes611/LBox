@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="Edit" ng-controller="EditController">
+    <head>
+        <script src="/js/angular.js"></script>
+        <script src="/js/LLocal.js"></script>
+        <script src="/js/edit.js"></script>
+        <link type="text/css" rel="stylesheet" href="/css/edit.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <div id="TopDiv">
+            <div id="OtherTools">
+                <img class="TopIcons" ng-click="goHome()" src="/img/homeIcon.jpg">
+                <img class="TopIcons" ng-show="content != prevContent" ng-click="save()" src="/img/saveIcon.png">
+            </div>
+        </div>
+        
+        
+        <textarea id="content" elastic="" ng-model="content"></textarea>
+        
+        
+        
+    </body>
+</html>
