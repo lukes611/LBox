@@ -3,7 +3,9 @@ var path = require('path');
 var querystring = require('querystring');
 
 exports.pathIsSafe = function(root, pathInput){
-    var truePath = path.resolve(pathInput);
+    var truePath = path.resolve(pathInput).replace(/\\/g, '/');
+	console.log(truePath, root, pathInput);
+	console.log('here: ', (new RegExp('^'+root)).test(truePath));
     if((new RegExp('^'+root)).test(truePath)) return {error : false, path : truePath};
     return {error : true};
     

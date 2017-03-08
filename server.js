@@ -79,7 +79,7 @@ app.get('/createFile', function(req, res){
     }
     
     fileData.getFiles(dir, function(files){
-        var exists = files.filter(f => f.name.toLowerCase() == name.toLowerCase()).length > 0;
+        var exists = files.filter(function(f){ return f.name.toLowerCase() == name.toLowerCase();}).length > 0;
         if(!exists){
             if(isDir==true){
                 fs.mkdir(dir + '/' + name, function(){
